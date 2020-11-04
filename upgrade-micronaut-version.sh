@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Change this variables for the update
+REPO_BRANCH=2.1.x
+OLD_MICRONAUT_VERSION=2.1.2
+NEW_MICRONAUT_VERSION=2.1.3
+######
+
+REPOS="micronaut-aws-app-graal micronaut-basic-app micronaut-cache-graal micronaut-elasticsearch-graal \
+       micronaut-function-aws-graal micronaut-function-graal micronaut-grpc-graal micronaut-introspected-graal \
+       micronaut-management-graal micronaut-rabbitmq-graal micronaut-redis-graal micronaut-schedule-graal \
+       micronaut-security-basic-auth-graal micronaut-security-cookie-graal micronaut-security-jwt-graal \
+       micronaut-security-session-graal micronaut-service-discovery-consul micronaut-service-discovery-eureka"
+
+#micronaut-data-jdbc-graal
+#micronaut-data-jpa-graal
+#micronaut-flyway-graal
+#micronaut-jooq-graal
+#micronaut-liquibase-graal
+#micronaut-servlet-graal
+#micronaut-views-graal
+#micronaut-zipkin-graal
+
+COMMIT_MSG="Upgrade Micronaut to ${NEW_MICRONAUT_VERSION}.BUILD-SNAPSHOT"
+
+TMP_DIR=`mktemp -d`
+cd ${TMP_DIR}
+
+for REPO in $REPOS; do
+  echo "***************************************************************************************"
+  echo "Upgrading repository: ${REPO}"
+  git clone git@github.com:micronaut-graal-tests/${REPO}.git
+  cd ${REPO}
+  git checkout $REPO_BRANCH
+  sed -i "s/${OLD_MICRONAUT_VERSION}/${NEW_MICRONAUT_VERSION}/g" gradle.properties
+  git add . && git commit -m "${COMMIT_MSG}" && git push
+  cd ..
+  echo "***************************************************************************************"
+done
+
+# Cleanup
+rm -rf $TMP_DIR
