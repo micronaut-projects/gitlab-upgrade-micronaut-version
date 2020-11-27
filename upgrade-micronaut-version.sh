@@ -24,7 +24,7 @@ upgradeSingleBranchRepo() {
     git clone git@github.com:micronaut-graal-tests/${REPO}.git
     cd ${REPO}
     git checkout $REPO_BRANCH
-    sed -i "s/${OLD_MICRONAUT_VERSION}/${NEW_MICRONAUT_VERSION}/g" gradle.properties
+    sed -i "s/micronautVersion=${OLD_MICRONAUT_VERSION}/micronautVersion=${NEW_MICRONAUT_VERSION}/g" gradle.properties
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
     cd ..
@@ -41,7 +41,7 @@ upgradeMultipleBranchesRepo() {
   cd ${REPO}
   for BRANCH in $BRANCHES; do
     git checkout ${REPO_BRANCH}_${BRANCH}
-    sed -i "s/${OLD_MICRONAUT_VERSION}/${NEW_MICRONAUT_VERSION}/g" gradle.properties
+    sed -i "s/micronautVersion=${OLD_MICRONAUT_VERSION}/micronautVersion=${NEW_MICRONAUT_VERSION}/g" gradle.properties
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
   done
