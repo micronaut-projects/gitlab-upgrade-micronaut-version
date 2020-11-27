@@ -63,7 +63,7 @@ createNewBranchMultipleBranchesRepo "micronaut-jooq-graal" "h2 postgres"
 createNewBranchMultipleBranchesRepo "micronaut-liquibase-graal" "h2 mariadb postgres"
 createNewBranchMultipleBranchesRepo "micronaut-mqtt-graal" "v3 v5"
 createNewBranchMultipleBranchesRepo "micronaut-servlet-graal" "tomcat jetty"
-createNewBranchMultipleBranchesRepo "micronaut-views-graal" "freemarker handlebars thymeleaf velocity"
+createNewBranchMultipleBranchesRepo "micronaut-views-graal" "freemarker handlebars pebble thymeleaf velocity"
 
 # Cleanup
 rm -rf $TMP_DIR

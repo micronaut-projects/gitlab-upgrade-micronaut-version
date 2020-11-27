@@ -68,7 +68,7 @@ upgradeMultipleBranchesRepo "micronaut-jooq-graal" "h2 postgres"
 upgradeMultipleBranchesRepo "micronaut-liquibase-graal" "h2 mariadb postgres"
 upgradeMultipleBranchesRepo "micronaut-mqtt-graal" "v3 v5"
 upgradeMultipleBranchesRepo "micronaut-servlet-graal" "tomcat jetty"
-upgradeMultipleBranchesRepo "micronaut-views-graal" "freemarker handlebars thymeleaf velocity"
+upgradeMultipleBranchesRepo "micronaut-views-graal" "freemarker handlebars pebble thymeleaf velocity"
 
 # Cleanup
 rm -rf $TMP_DIR
