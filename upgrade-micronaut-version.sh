@@ -65,7 +65,7 @@ upgradeMultipleBranchesRepo "micronaut-data-jdbc-graal" "h2 mariadb mysql oracle
 upgradeMultipleBranchesRepo "micronaut-data-jpa-graal" "h2 mariadb mysql oracle postgres sqlserver"
 upgradeMultipleBranchesRepo "micronaut-flyway-graal" "h2 mariadb postgres"
 upgradeMultipleBranchesRepo "micronaut-jooq-graal" "h2 postgres"
-#upgradeMultipleBranchesRepo "micronaut-liquibase-graal" "h2 mariadb postgres"
+upgradeMultipleBranchesRepo "micronaut-liquibase-graal" "h2 mariadb postgres"
 upgradeMultipleBranchesRepo "micronaut-servlet-graal" "tomcat jetty"
 upgradeMultipleBranchesRepo "micronaut-views-graal" "freemarker handlebars thymeleaf velocity"
 upgradeMultipleBranchesRepo "micronaut-mqtt-graal" "v3 v5"

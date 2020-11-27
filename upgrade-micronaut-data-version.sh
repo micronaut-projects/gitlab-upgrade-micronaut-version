@@ -42,7 +42,7 @@ cd ${TMP_DIR}
 upgradeMultipleBranchesRepo "micronaut-data-jdbc-graal" "h2 mariadb mysql oracle postgres sqlserver"
 upgradeMultipleBranchesRepo "micronaut-data-jpa-graal" "h2 mariadb mysql oracle postgres sqlserver"
 upgradeMultipleBranchesRepo "micronaut-flyway-graal" "h2 mariadb postgres"
-#upgradeMultipleBranchesRepo "micronaut-liquibase-graal" "h2 mariadb postgres"
+upgradeMultipleBranchesRepo "micronaut-liquibase-graal" "h2 mariadb postgres"
 
 # Cleanup
 rm -rf $TMP_DIR
