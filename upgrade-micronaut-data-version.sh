@@ -5,7 +5,7 @@ if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
     echo " $ `basename $0` <repo-branch> <old-version> <new-version>"
     echo " $ `basename $0` 2.1.x 2.1.1 2.1.2"
     echo ""
-    echo "That would upgrade the branch '2.1.x' in all test applications from Micronaut Data 2.1.1.BUILD-SNAPSHOT to 2.1.2.BUILD-SNAPSHOT"
+    echo "That would upgrade the branch '2.1.x' in all test applications from Micronaut Data 2.1.1-SNAPSHOT to 2.1.2-SNAPSHOT"
     exit 1
 fi
 
@@ -13,7 +13,7 @@ REPO_BRANCH=$1
 OLD_MICRONAUT_DATA_VERSION=$2
 NEW_MICRONAUT_DATA_VERSION=$3
 
-COMMIT_MSG="Upgrade Micronaut Data to ${NEW_MICRONAUT_DATA_VERSION}.BUILD-SNAPSHOT"
+COMMIT_MSG="Upgrade Micronaut Data to ${NEW_MICRONAUT_DATA_VERSION}-SNAPSHOT"
 
 upgradeMultipleBranchesRepo() {
   echo "***************************************************************************************"
