@@ -48,6 +48,25 @@ upgradeMultipleBranchesRepo() {
   cd ..
 }
 
+upgradeMultipleProjectRepo() {
+  echo "***************************************************************************************"
+  REPO=$1
+  MODULES=$2
+
+  figlet ${REPO} -w 200
+  git clone git@github.com:micronaut-graal-tests/${REPO}.git
+  cd ${REPO}
+  git checkout ${REPO_BRANCH}
+  for MODULE in ${MODULES}; do
+    cd ${MODULE}
+    sed -i "s/id(\"io.micronaut.application\") version \"${OLD_GRADLE_PLUGIN_VERSION}\"/id(\"io.micronaut.application\") version \"${NEW_GRADLE_PLUGIN_VERSION}\"/g" build.gradle
+    cd ..
+    echo "***************************************************************************************"
+  done
+  git add . && git commit -m "${COMMIT_MSG}" && git push
+  cd ..
+}
+
 
 #################
 ### MAIN
@@ -56,11 +75,10 @@ TMP_DIR=`mktemp -d`
 cd ${TMP_DIR}
 
 upgradeSingleBranchRepo "micronaut-aws-app-graal micronaut-basic-app micronaut-cache-graal micronaut-elasticsearch-graal \
-       micronaut-function-aws-graal micronaut-grpc-graal micronaut-introspected-graal \
-       micronaut-management-graal micronaut-rabbitmq-graal micronaut-redis-graal micronaut-schedule-graal \
-       micronaut-security-basic-auth-graal micronaut-security-cookie-graal micronaut-security-jwt-graal \
-       micronaut-security-session-graal micronaut-service-discovery-consul micronaut-service-discovery-eureka \
-       micronaut-zipkin-graal"
+       micronaut-function-aws-graal micronaut-management-graal micronaut-rabbitmq-graal micronaut-redis-graal \
+       micronaut-schedule-graal micronaut-security-basic-auth-graal micronaut-security-cookie-graal
+       micronaut-security-jwt-graal micronaut-security-session-graal micronaut-service-discovery-consul
+       micronaut-service-discovery-eureka micronaut-zipkin-graal"
 upgradeMultipleBranchesRepo "micronaut-data-jdbc-graal" "h2 mariadb mysql oracle postgres sqlserver"
 upgradeMultipleBranchesRepo "micronaut-data-jpa-graal" "h2 mariadb mysql oracle postgres sqlserver"
 upgradeMultipleBranchesRepo "micronaut-flyway-graal" "h2 mariadb postgres"
@@ -69,6 +87,8 @@ upgradeMultipleBranchesRepo "micronaut-liquibase-graal" "h2 mariadb postgres"
 upgradeMultipleBranchesRepo "micronaut-mqtt-graal" "v3 v5"
 upgradeMultipleBranchesRepo "micronaut-servlet-graal" "tomcat jetty"
 upgradeMultipleBranchesRepo "micronaut-views-graal" "freemarker handlebars pebble thymeleaf velocity"
+upgradeMultipleProjectRepo "micronaut-grpc-graal" "client server"
+upgradeMultipleProjectRepo "micronaut-introspected-graal" "app"
 
 # Cleanup
 rm -rf $TMP_DIR
