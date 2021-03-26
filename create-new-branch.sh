@@ -54,8 +54,8 @@ createNewBranchSingleBranchRepo "micronaut-aws-app-graal micronaut-basic-app mic
        micronaut-function-aws-graal micronaut-grpc-graal micronaut-introspected-graal \
        micronaut-management-graal micronaut-rabbitmq-graal micronaut-redis-graal micronaut-schedule-graal \
        micronaut-security-basic-auth-graal micronaut-security-cookie-graal micronaut-security-jwt-graal \
-       micronaut-security-session-graal micronaut-service-discovery-consul micronaut-service-discovery-eureka \
-       micronaut-zipkin-graal"
+       micronaut-security-session-graal micronaut-security-ldap-graal micronaut-service-discovery-consul \
+       micronaut-service-discovery-eureka micronaut-zipkin-graal"
 createNewBranchMultipleBranchesRepo "micronaut-data-jdbc-graal" "h2 mariadb mysql oracle postgres sqlserver"
 createNewBranchMultipleBranchesRepo "micronaut-data-jpa-graal" "h2 mariadb mysql oracle postgres sqlserver"
 createNewBranchMultipleBranchesRepo "micronaut-flyway-graal" "h2 mariadb postgres"
