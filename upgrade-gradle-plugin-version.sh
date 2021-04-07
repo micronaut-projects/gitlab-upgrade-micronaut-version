@@ -31,6 +31,22 @@ upgradeSingleBranchRepo() {
   done
 }
 
+upgradeSingleBranchKotlinRepo() {
+  echo "***************************************************************************************"
+  REPOS=$1
+
+  for REPO in $REPOS; do
+    figlet ${REPO} -w 200
+    git clone git@github.com:micronaut-graal-tests/${REPO}.git
+    cd ${REPO}
+    git checkout $REPO_BRANCH
+    sed -i "s/id(\"io.micronaut.application\") version \"${OLD_GRADLE_PLUGIN_VERSION}\"/id(\"io.micronaut.application\") version \"${NEW_GRADLE_PLUGIN_VERSION}\"/g" build.gradle.kts
+    git add . && git commit -m "${COMMIT_MSG}" && git push
+    echo "***************************************************************************************"
+    cd ..
+  done
+}
+
 upgradeMultipleBranchesRepo() {
   echo "***************************************************************************************"
   REPO=$1
@@ -90,6 +106,7 @@ upgradeMultipleBranchesRepo "micronaut-views-graal" "freemarker handlebars pebbl
 upgradeMultipleBranchesRepo "micronaut-aws-sdk2-graal" "s3 paramstore"
 upgradeMultipleProjectRepo "micronaut-grpc-graal" "client server"
 upgradeMultipleProjectRepo "micronaut-introspected-graal" "app"
+upgradeSingleBranchKotlinRepo "micronaut-kotlin-graal"
 
 # Cleanup
 rm -rf $TMP_DIR
