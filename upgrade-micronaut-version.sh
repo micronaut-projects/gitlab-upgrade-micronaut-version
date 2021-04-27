@@ -31,6 +31,23 @@ upgradeSingleBranchRepo() {
   done
 }
 
+upgradeSingleBranchMavenRepo() {
+  echo "***************************************************************************************"
+  REPOS=$1
+
+  for REPO in $REPOS; do
+    figlet ${REPO} -w 200
+    git clone git@github.com:micronaut-graal-tests/${REPO}.git
+    cd ${REPO}
+    git checkout $REPO_BRANCH
+    sed -i "s/<version>${OLD_MICRONAUT_VERSION}-SNAPSHOT<\/version>/<version>${NEW_MICRONAUT_VERSION}-SNAPSHOT<\/version>/g" pom.xml
+    sed -i "s/<micronaut.version>${OLD_MICRONAUT_VERSION}-SNAPSHOT<\/micronaut.version>/<micronaut.version>${NEW_MICRONAUT_VERSION}-SNAPSHOT<\/micronaut.version>/g" pom.xml
+    git add . && git commit -m "${COMMIT_MSG}" && git push
+    echo "***************************************************************************************"
+    cd ..
+  done
+}
+
 upgradeMultipleBranchesRepo() {
   echo "***************************************************************************************"
   REPO=$1
@@ -70,6 +87,7 @@ upgradeMultipleBranchesRepo "micronaut-mqtt-graal" "v3 v5"
 upgradeMultipleBranchesRepo "micronaut-servlet-graal" "tomcat jetty"
 upgradeMultipleBranchesRepo "micronaut-views-graal" "freemarker handlebars pebble thymeleaf velocity"
 upgradeMultipleBranchesRepo "micronaut-aws-sdk2-graal" "s3 paramstore"
+upgradeSingleBranchMavenRepo "micronaut-maven-graal"
 
 # Cleanup
 rm -rf $TMP_DIR
