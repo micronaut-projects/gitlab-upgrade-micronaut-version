@@ -91,7 +91,7 @@ TMP_DIR=`mktemp -d`
 cd ${TMP_DIR}
 
 upgradeSingleBranchRepo "micronaut-aws-app-graal micronaut-basic-app micronaut-cache-graal micronaut-cassandra-graal \
-       micronaut-elasticsearch-graal micronaut-graphql-graal micronaut-function-aws-graal micronaut-management-graal micronaut-rabbitmq-graal \
+       micronaut-elasticsearch-graal micronaut-graphql-graal micronaut-function-aws-graal micronaut-kafka-graal micronaut-management-graal micronaut-rabbitmq-graal \
        micronaut-redis-graal micronaut-schedule-graal micronaut-security-basic-auth-graal micronaut-security-cookie-graal \
        micronaut-security-jwt-graal micronaut-security-session-graal micronaut-security-ldap-graal \
        micronaut-service-discovery-consul micronaut-service-discovery-eureka micronaut-zipkin-graal"
