@@ -83,7 +83,6 @@ upgradeSingleBranchRepo "micronaut-aws-app-graal \
       micronaut-introspected-graal \
       micronaut-kafka-graal \
       micronaut-kotlin-graal \
-      micronaut-maven-graal \
       micronaut-management-graal \
       micronaut-rabbitmq-graal \
       micronaut-redis-graal \
