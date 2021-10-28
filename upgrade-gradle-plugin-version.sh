@@ -58,6 +58,7 @@ upgradeMultipleBranchesRepo() {
   for BRANCH in $BRANCHES; do
     git checkout ${REPO_BRANCH}_${BRANCH}
     sed -i "s/id(\"io.micronaut.application\") version \"${OLD_GRADLE_PLUGIN_VERSION}\"/id(\"io.micronaut.application\") version \"${NEW_GRADLE_PLUGIN_VERSION}\"/g" build.gradle
+    sed -i "s/id(\"io.micronaut.graalvm\") version \"${OLD_GRADLE_PLUGIN_VERSION}\"/id(\"io.micronaut.graalvm\") version \"${NEW_GRADLE_PLUGIN_VERSION}\"/g" build.gradle
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
   done
