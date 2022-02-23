@@ -24,7 +24,7 @@ upgradeSingleBranchRepo() {
     git clone git@github.com:micronaut-graal-tests/${REPO}.git
     cd ${REPO}
     git checkout $REPO_BRANCH
-    sed -i "s/micronautVersion=${OLD_MICRONAUT_VERSION}/micronautVersion=${NEW_MICRONAUT_VERSION}/g" gradle.properties
+    sed -i '' "s/micronautVersion=${OLD_MICRONAUT_VERSION}/micronautVersion=${NEW_MICRONAUT_VERSION}/g" gradle.properties
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
     cd ..
@@ -40,8 +40,8 @@ upgradeSingleBranchMavenRepo() {
     git clone git@github.com:micronaut-graal-tests/${REPO}.git
     cd ${REPO}
     git checkout $REPO_BRANCH
-    sed -i "s/<version>${OLD_MICRONAUT_VERSION}-SNAPSHOT<\/version>/<version>${NEW_MICRONAUT_VERSION}-SNAPSHOT<\/version>/g" pom.xml
-    sed -i "s/<micronaut.version>${OLD_MICRONAUT_VERSION}-SNAPSHOT<\/micronaut.version>/<micronaut.version>${NEW_MICRONAUT_VERSION}-SNAPSHOT<\/micronaut.version>/g" pom.xml
+    sed -i '' "s/<version>${OLD_MICRONAUT_VERSION}-SNAPSHOT<\/version>/<version>${NEW_MICRONAUT_VERSION}-SNAPSHOT<\/version>/g" pom.xml
+    sed -i '' "s/<micronaut.version>${OLD_MICRONAUT_VERSION}-SNAPSHOT<\/micronaut.version>/<micronaut.version>${NEW_MICRONAUT_VERSION}-SNAPSHOT<\/micronaut.version>/g" pom.xml
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
     cd ..
@@ -58,7 +58,7 @@ upgradeMultipleBranchesRepo() {
   cd ${REPO}
   for BRANCH in $BRANCHES; do
     git checkout ${REPO_BRANCH}_${BRANCH}
-    sed -i "s/micronautVersion=${OLD_MICRONAUT_VERSION}/micronautVersion=${NEW_MICRONAUT_VERSION}/g" gradle.properties
+    sed -i '' "s/micronautVersion=${OLD_MICRONAUT_VERSION}/micronautVersion=${NEW_MICRONAUT_VERSION}/g" gradle.properties
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
   done

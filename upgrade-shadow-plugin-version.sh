@@ -24,7 +24,7 @@ upgradeSingleBranchRepo() {
     git clone git@github.com:micronaut-graal-tests/${REPO}.git
     cd ${REPO}
     git checkout $REPO_BRANCH
-    sed -i "s/id(\"com.github.johnrengelman.shadow\") version \"${OLD_SHADOW_PLUGIN_VERSION}\"/id(\"com.github.johnrengelman.shadow\") version \"${NEW_SHADOW_PLUGIN_VERSION}\"/g" build.gradle
+    sed -i '' "s/id(\"com.github.johnrengelman.shadow\") version \"${OLD_SHADOW_PLUGIN_VERSION}\"/id(\"com.github.johnrengelman.shadow\") version \"${NEW_SHADOW_PLUGIN_VERSION}\"/g" build.gradle
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
     cd ..
@@ -40,7 +40,7 @@ upgradeSingleBranchKotlinRepo() {
     git clone git@github.com:micronaut-graal-tests/${REPO}.git
     cd ${REPO}
     git checkout $REPO_BRANCH
-    sed -i "s/id(\"com.github.johnrengelman.shadow\") version \"${OLD_SHADOW_PLUGIN_VERSION}\"/id(\"com.github.johnrengelman.shadow\") version \"${NEW_SHADOW_PLUGIN_VERSION}\"/g" build.gradle.kts
+    sed -i '' "s/id(\"com.github.johnrengelman.shadow\") version \"${OLD_SHADOW_PLUGIN_VERSION}\"/id(\"com.github.johnrengelman.shadow\") version \"${NEW_SHADOW_PLUGIN_VERSION}\"/g" build.gradle.kts
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
     cd ..
@@ -57,7 +57,7 @@ upgradeMultipleBranchesRepo() {
   cd ${REPO}
   for BRANCH in $BRANCHES; do
     git checkout ${REPO_BRANCH}_${BRANCH}
-    sed -i "s/id(\"com.github.johnrengelman.shadow\") version \"${OLD_SHADOW_PLUGIN_VERSION}\"/id(\"com.github.johnrengelman.shadow\") version \"${NEW_SHADOW_PLUGIN_VERSION}\"/g" build.gradle
+    sed -i '' "s/id(\"com.github.johnrengelman.shadow\") version \"${OLD_SHADOW_PLUGIN_VERSION}\"/id(\"com.github.johnrengelman.shadow\") version \"${NEW_SHADOW_PLUGIN_VERSION}\"/g" build.gradle
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
   done
@@ -75,7 +75,7 @@ upgradeMultipleProjectRepo() {
   git checkout ${REPO_BRANCH}
   for MODULE in ${MODULES}; do
     cd ${MODULE}
-    sed -i "s/id(\"com.github.johnrengelman.shadow\") version \"${OLD_SHADOW_PLUGIN_VERSION}\"/id(\"com.github.johnrengelman.shadow\") version \"${NEW_SHADOW_PLUGIN_VERSION}\"/g" build.gradle
+    sed -i '' "s/id(\"com.github.johnrengelman.shadow\") version \"${OLD_SHADOW_PLUGIN_VERSION}\"/id(\"com.github.johnrengelman.shadow\") version \"${NEW_SHADOW_PLUGIN_VERSION}\"/g" build.gradle
     cd ..
     echo "***************************************************************************************"
   done
