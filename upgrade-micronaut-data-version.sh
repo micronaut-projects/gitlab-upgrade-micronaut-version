@@ -25,7 +25,7 @@ upgradeMultipleBranchesRepo() {
   cd ${REPO}
   for BRANCH in $BRANCHES; do
     git checkout ${REPO_BRANCH}_${BRANCH}
-    sed -i "s/micronautDataVersion=${OLD_MICRONAUT_DATA_VERSION}/micronautDataVersion=${NEW_MICRONAUT_DATA_VERSION}/g" gradle.properties
+    sed -i '' "s/micronautDataVersion=${OLD_MICRONAUT_DATA_VERSION}/micronautDataVersion=${NEW_MICRONAUT_DATA_VERSION}/g" gradle.properties
     git add . && git commit -m "${COMMIT_MSG}" && git push
     echo "***************************************************************************************"
   done
