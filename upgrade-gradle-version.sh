@@ -59,6 +59,7 @@ upgradeSingleBranchRepo "micronaut-aws-app-graal \
       micronaut-cache-graal \
       micronaut-cassandra-graal \
       micronaut-elasticsearch-graal \
+      micronaut-email \
       micronaut-function-aws-graal \
       micronaut-graphql-graal \
       micronaut-grpc-graal \
